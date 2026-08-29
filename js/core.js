@@ -67,6 +67,11 @@ const finance = {
     return this.items.filter((item) => item.tipo === tipo);
   },
 
+  // Filtra as movimentações pela categoria informada
+  filtrarPorCategoria(categoria) {
+    return this.items.filter((item) => item.categoria === categoria);
+  },
+
 
 
 };
@@ -101,3 +106,4 @@ const storage = {
     return dados ? JSON.parse(dados) : { nome: "", tema: "claro" };
   },
 };
+
