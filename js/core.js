@@ -87,6 +87,15 @@ const finance = {
     });
   },
 
+  // Busca movimentações pela descrição
+  buscar(termo) {
+    const termoNormalizado = termo.trim().toLowerCase();
+
+    return this.items.filter(({ descricao }) =>
+      descricao.toLowerCase().includes(termoNormalizado)
+    );
+  },
+
 };
 
 const storage = {
