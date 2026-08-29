@@ -13,6 +13,10 @@ const finance = {
     this.items = storage.carregarMovimentacoes();
   },
 
+  listar() {
+    return this.items;
+  },
+
   // Função para adicionar entradas e saidas.
 
   adicionar({ tipo, descricao, valor, categoria, data }) {
@@ -29,8 +33,19 @@ const finance = {
     return novo;
   },
 
-  listar() {
-    return this.items;
+  // função de editar
+
+  editar(id, dados) {
+    let editou = false;
+    this.items = this.items.map((i) => {
+      if (i.id === id) {
+        editou = true;
+        return { ...i, ...dados };
+      }
+      return i;
+    });
+    this.salvar();
+    return editou;
   },
 };
 
