@@ -54,6 +54,12 @@ const finance = {
     this.items = this.items.filter((i) => i.id !== id);
     this.salvar();
   },
+
+  // função de localizar por id
+
+  getById(id) {
+    return this.items.find((i) => i.id === id);
+  },
 };
 
 const storage = {
