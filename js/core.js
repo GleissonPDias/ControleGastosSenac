@@ -96,6 +96,25 @@ const finance = {
     );
   },
 
+
+  // calcula o total das entradas
+  totalEntradas() {
+    return this.filtrarPorTipo("entrada").reduce(
+      (total, { valor }) => total + valor, 
+      0
+    );
+  },
+
+  // Calcula o total das saídas
+  totalSaidas() {
+    return this.filtrarPorTipo("saida").reduce(
+      (total, { valor }) => total + valor,
+      0
+    )
+  }
+
+
+
 };
 
 const storage = {
@@ -128,4 +147,3 @@ const storage = {
     return dados ? JSON.parse(dados) : { nome: "", tema: "claro" };
   },
 };
-
