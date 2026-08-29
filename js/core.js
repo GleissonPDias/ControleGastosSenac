@@ -51,8 +51,10 @@ const finance = {
   // função de excluir
 
   excluir(id) {
+    const tinha = this.items.length;
     this.items = this.items.filter((i) => i.id !== id);
     this.salvar();
+    return this.items.length < tinha;
   },
 
   // função de localizar por id
