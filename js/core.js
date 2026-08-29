@@ -63,7 +63,7 @@ const finance = {
 
 
   // Filtra as movimentações por entrada ou saída
-  filtrarPorTipo(tipo){
+  filtrarPorTipo(tipo) {
     return this.items.filter((item) => item.tipo === tipo);
   },
 
@@ -72,7 +72,20 @@ const finance = {
     return this.items.filter((item) => item.categoria === categoria);
   },
 
+  // Filtra movimentações dentro de um período
+  filtrarPorPeriodo(inicio, fim) {
+    const dataInicial = new Date(inicio);
+    const dataFinal = new Date(fim);
 
+    return this.items.filter((item) => {
+      const dataMovimentacao = new Date(item.data);
+
+      return (
+        dataMovimentacao >= dataInicial &&
+        dataMovimentacao <= dataFinal
+      );
+    });
+  },
 
 };
 
