@@ -27,4 +27,11 @@ const storage = {
   salvarMovimentacoes(items) {
     localStorage.setItem(this.movimentacoes, JSON.stringify(items));
   },
+
+  //carregar os dados salvor no storage
+
+  carregarMovimentacoes() {
+    const dados = localStorage.getItem(this.movimentacoes);
+    return dados ? JSON.parse(dados) : [];
+  },
 };
