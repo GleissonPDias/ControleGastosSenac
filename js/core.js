@@ -28,6 +28,10 @@ const finance = {
     this.salvar();
     return novo;
   },
+
+  listar() {
+    return this.items;
+  },
 };
 
 const storage = {
