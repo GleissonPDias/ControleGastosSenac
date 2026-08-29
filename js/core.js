@@ -17,3 +17,14 @@ const finance = {
     return novo;
   },
 };
+
+const storage = {
+  movimentacoes: "finance.movimentacoes",
+  config: "finance.config",
+
+  //salvar as movimentacoes no storage no navegador
+
+  salvarMovimentacoes(items) {
+    localStorage.setItem(this.movimentacoes, JSON.stringify(items));
+  },
+};
