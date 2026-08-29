@@ -60,6 +60,15 @@ const finance = {
   getById(id) {
     return this.items.find((i) => i.id === id);
   },
+
+
+  // Filtra as movimentações por entrada ou saída
+  filtrarPorTipo(tipo){
+    return this.items.filter((item) => item.tipo === tipo);
+  },
+
+
+
 };
 
 const storage = {
