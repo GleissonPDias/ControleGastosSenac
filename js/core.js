@@ -110,8 +110,21 @@ const finance = {
     return this.filtrarPorTipo("saida").reduce(
       (total, { valor }) => total + valor,
       0
-    )
-  }
+    );
+  },
+
+
+  // Calcula o saldo disponivel
+  saldo() {
+    return this.totalEntradas() - this.totalSaidas();
+  },
+
+  // Retorna o total das despesas
+  totalAPagar() {
+    return this.totalSaidas();
+  },
+
+
 
 
 
@@ -147,3 +160,13 @@ const storage = {
     return dados ? JSON.parse(dados) : { nome: "", tema: "claro" };
   },
 };
+
+
+finance.items = [
+  { id: 1, tipo: "entrada", valor: 2500 },
+  { id: 2, tipo: "saida", valor: 900 },
+  { id: 3, tipo: "saida", valor: 100 },
+];
+
+console.log(finance.saldo());
+console.log(finance.totalAPagar());
