@@ -1,6 +1,18 @@
 const finance = {
   items: [],
 
+  //funcao para salvar
+
+  salvar() {
+    storage.salvarMovimentacoes(this.items);
+  },
+
+  // funcao para carregar os dados do storage
+
+  carregar() {
+    this.items = storage.carregarMovimentacoes();
+  },
+
   // Função para adicionar entradas e saidas.
 
   adicionar({ tipo, descricao, valor, categoria, data }) {
