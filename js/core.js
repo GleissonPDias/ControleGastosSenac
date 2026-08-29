@@ -47,6 +47,13 @@ const finance = {
     this.salvar();
     return editou;
   },
+
+  // função de excluir
+
+  excluir(id) {
+    this.items = this.items.filter((i) => i.id !== id);
+    this.salvar();
+  },
 };
 
 const storage = {
