@@ -124,10 +124,6 @@ const finance = {
     return this.totalSaidas();
   },
 
-
-
-
-
 };
 
 const storage = {
@@ -160,13 +156,3 @@ const storage = {
     return dados ? JSON.parse(dados) : { nome: "", tema: "claro" };
   },
 };
-
-
-finance.items = [
-  { id: 1, tipo: "entrada", valor: 2500 },
-  { id: 2, tipo: "saida", valor: 900 },
-  { id: 3, tipo: "saida", valor: 100 },
-];
-
-console.log(finance.saldo());
-console.log(finance.totalAPagar());
