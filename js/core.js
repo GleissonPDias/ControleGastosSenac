@@ -34,4 +34,17 @@ const storage = {
     const dados = localStorage.getItem(this.movimentacoes);
     return dados ? JSON.parse(dados) : [];
   },
+
+  //Salvar configurações no storage
+
+  salvarConfig(cfg) {
+    localStorage.setItem(this.config, JSON.stringify(cfg));
+  },
+
+  //Carregar configurações salvas
+
+  carregarConfig() {
+    const dados = localStorage.getItem(this.config);
+    return dados ? JSON.parse(dados) : { nome: "", tema: "claro" };
+  },
 };
