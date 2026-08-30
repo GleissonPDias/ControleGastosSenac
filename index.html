@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Financeiro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
+<div class="orb three"></div>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">💰</div>
+            <span>Controle Financeiro</span>
+        </div>
+        <nav>
+            <a href="index.html" id="nav-index" class="active">
+                <span>⌂</span>
+                <strong>Dashboard</strong>
+            </a>
+            <a href="transacoes.html" id="nav-transacoes">
+                <span>↕</span>
+                <strong>Transações</strong>
+            </a>
+            <a href="relatorios.html" id="nav-relatorios">
+                <span>◉</span>
+                <strong>Relatórios</strong>
+            </a>
+            <a href="configuracoes.html" id="nav-configuracoes">
+                <span>⚙</span>
+                <strong>Configurações</strong>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Olá!</h1>
+                <p>Aqui está o resumo em tempo real das suas finanças.</p>
+            </div>
+            <div class="profile">
+                <div class="avatar">G</div>
+            </div>
+        </header>
+
+
+
+        <!-- CARDS 3D -->
+        <section class="cards">
+            <div class="card large">
+                <div class="balance">
+                    <div>
+                        <div class="card-label">Saldo disponível</div>
+                        <div class="value">R$ 0,00</div>
+                        <small id="saldoSubtext" class="positive">Resumo em tempo real</small>
+                    </div>
+                    <div class="mini-chart">╱╲╱╲╱╲</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icon">↑</div>
+                <div class="card-label">Receitas</div>
+                <div class="value">R$ 0,00</div>
+                <small id="receitasSubtext" class="positive">Total de entradas</small>
+            </div>
+
+            <div class="card">
+                <div class="icon">↓</div>
+                <div class="card-label">Despesas</div>
+                <div class="value">R$ 0,00</div>
+                <small id="despesasSubtext" class="negative">Total de saídas</small>
+            </div>
+
+            <div class="card">
+                <div class="icon">%</div>
+                <div class="card-label">Economia</div>
+                <div class="value">0%</div>
+                <small id="economiaSubtext" class="positive">Taxa de poupança</small>
+            </div>
+        </section>
+
+        <!-- GAMIFICAÇÃO + METAS -->
+        <section class="gamification-grid">
+            <div class="panel gamification-widget-3d">
+                <div class="panel-header">
+                    <div>
+                        <h2>🏆 Sua Jornada</h2>
+                        <span>Nível, XP e conquistas</span>
+                    </div>
+                    <div class="health-score-box">
+                        <strong id="dashHealthScore">0</strong>
+                        <span>Saúde<br>Financeira</span>
+                    </div>
+                </div>
+
+                <div class="level-row">
+                    <div class="level-avatar" id="dashLvlIcon">🌱</div>
+                    <div class="level-info">
+                        <div class="level-title-text"><h3 id="dashLvlTitle">Iniciante (Nível 1)</h3></div>
+                        <div class="xp-track"><div class="xp-fill" id="dashXpFill"></div></div>
+                        <small id="dashXpText" class="xp-text">0% para o próximo nível</small>
+                    </div>
+                </div>
+
+                <div class="badges-grid" id="badgesGrid"></div>
+            </div>
+
+            <div class="panel goal-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>🎯 Metas</h2>
+                        <span>Defina objetivos para o mês</span>
+                    </div>
+                </div>
+
+                <form id="goalForm" class="goal-form">
+                    <div class="form-group">
+                        <label>Descrição da meta</label>
+                        <input id="goalDesc" type="text" placeholder="Ex: Economizar para a viagem">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de meta</label>
+                        <select id="goalType">
+                            <option value="economia">Economia (saldo do mês)</option>
+                            <option value="limite">Limite de gasto no mês</option>
+                            <option value="receitas">Receitas no mês</option>
+                            <option value="transacoes">Nº de movimentações no mês</option>
+                        </select>
+                    </div>
+                    <div class="goal-inputs">
+                        <div class="form-group" style="flex: 1;">
+                            <label>Valor / quantidade</label>
+                            <input id="goalValue" type="number" step="0.01" min="1" placeholder="0" required>
+                        </div>
+                        <button class="add-button" type="submit" style="align-self: flex-end;">+ Criar Meta</button>
+                    </div>
+                </form>
+
+                <div id="metasList" class="goals-list"></div>
+            </div>
+        </section>
+
+        <!-- CHARTS GRID -->
+        <section class="dashboard-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Evolução financeira</h2>
+                        <span>Histórico recente</span>
+                    </div>
+                    <button class="add-button" onclick="openModal()">+ Adicionar</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Gastos por categoria</h2>
+                        <span>Distribuição das saídas</span>
+                    </div>
+                </div>
+                <div class="donut-container">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+                <div class="legend"></div>
+            </div>
+        </section>
+
+        <!-- TRANSACTIONS -->
+        <section class="panel transactions">
+            <div class="panel-header">
+                <div>
+                    <h2>Últimas movimentações</h2>
+                    <span>Atividades recentes</span>
+                </div>
+            </div>
+            <div id="transactionList"></div>
+        </section>
+
+    </main>
+
+</div>
+
+<!-- MODAL DE NOVA TRANSAÇÃO -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nova transação</h2>
+            <button class="close" onclick="closeModal()">×</button>
+        </div>
+        <form id="transactionForm">
+            <div class="form-group">
+                <label>Descrição</label>
+                <input id="description" type="text" placeholder="Ex: Supermercado, Salário..." required>
+            </div>
+            <div class="form-group">
+                <label>Valor (R$)</label>
+                <input id="amount" type="number" step="0.01" placeholder="0,00" required>
+            </div>
+            <div class="form-group">
+                <label>Tipo</label>
+                <select id="type">
+                    <option value="expense">Despesa (Saída)</option>
+                    <option value="income">Receita (Entrada)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Categoria</label>
+                <select id="category">
+                    <option>Alimentação</option>
+                    <option>Moradia</option>
+                    <option>Transporte</option>
+                    <option>Entretenimento</option>
+                    <option>Saúde</option>
+                    <option>Equipamentos</option>
+                    <option>Serviços</option>
+                    <option>Outros</option>
+                </select>
+            </div>
+            <button class="submit" type="submit">Adicionar transação</button>
+        </form>
+    </div>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/gamification.js"></script>
+<script src="js/user.js"></script>
+<script src="js/background3d.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
