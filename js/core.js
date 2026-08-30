@@ -62,6 +62,70 @@ const finance = {
   getById(id) {
     return this.items.find((i) => i.id === id);
   },
+
+
+  // Filtra as movimentações por entrada ou saída
+  filtrarPorTipo(tipo) {
+    return this.items.filter((item) => item.tipo === tipo);
+  },
+
+  // Filtra as movimentações pela categoria informada
+  filtrarPorCategoria(categoria) {
+    return this.items.filter((item) => item.categoria === categoria);
+  },
+
+  // Filtra movimentações dentro de um período
+  filtrarPorPeriodo(inicio, fim) {
+    const dataInicial = new Date(inicio);
+    const dataFinal = new Date(fim);
+
+    return this.items.filter((item) => {
+      const dataMovimentacao = new Date(item.data);
+
+      return (
+        dataMovimentacao >= dataInicial &&
+        dataMovimentacao <= dataFinal
+      );
+    });
+  },
+
+  // Busca movimentações pela descrição
+  buscar(termo) {
+    const termoNormalizado = termo.trim().toLowerCase();
+
+    return this.items.filter(({ descricao }) =>
+      descricao.toLowerCase().includes(termoNormalizado)
+    );
+  },
+
+
+  // calcula o total das entradas
+  totalEntradas() {
+    return this.filtrarPorTipo("entrada").reduce(
+      (total, { valor }) => total + valor, 
+      0
+    );
+  },
+
+  // Calcula o total das saídas
+  totalSaidas() {
+    return this.filtrarPorTipo("saida").reduce(
+      (total, { valor }) => total + valor,
+      0
+    );
+  },
+
+
+  // Calcula o saldo disponivel
+  saldo() {
+    return this.totalEntradas() - this.totalSaidas();
+  },
+
+  // Retorna o total das despesas
+  totalAPagar() {
+    return this.totalSaidas();
+  },
+
 };
 
 const storage = {
