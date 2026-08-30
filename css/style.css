@@ -994,77 +994,6 @@
         }
 
         /* ==============================
-           MOBILE
-        ============================== */
-
-        @media(max-width: 1100px) {
-
-            .cards {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gamification-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media(max-width: 800px) {
-
-            .sidebar {
-                width: 70px;
-                padding: 20px 10px;
-            }
-
-            .logo span,
-            nav a strong {
-                display: none;
-            }
-
-            .logo {
-                justify-content: center;
-            }
-
-            nav a {
-                justify-content: center;
-            }
-
-            .main {
-                margin-left: 70px;
-                width: calc(100% - 70px);
-
-                padding: 20px;
-            }
-        }
-
-        @media(max-width: 600px) {
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .header {
-                align-items: flex-start;
-            }
-
-            .header p {
-                display: none;
-            }
-
-            .profile {
-                display: none;
-            }
-
-            .main {
-                padding: 15px;
-            }
-        }
-
-/* ==============================
    GAMIFICAÇÃO & METAS
 ============================== */
 
@@ -1714,4 +1643,378 @@ body.theme-light {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     box-shadow: 0 30px 80px rgba(15, 23, 42, 0.15);
+}
+
+/* ==============================
+   RESPONSIVO / MOBILE
+============================== */
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+button,
+nav a,
+.add-button,
+.submit,
+.close,
+.btn-edit-item,
+.btn-delete-item,
+select {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Helper: pares de cards (Relatórios) */
+.cards-duo {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Barra de filtros (Transações) */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-bar > input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-bar > select {
+    width: 150px;
+}
+
+/* ———— Tablets / telas médias ———— */
+@media (max-width: 1100px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid,
+    .gamification-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ———— Tablets estreitos / laptops pequenos → rail de ícones ———— */
+@media (max-width: 800px) {
+    .sidebar {
+        width: 68px;
+        padding: 18px 10px;
+    }
+
+    .logo {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .logo span {
+        display: none;
+    }
+
+    nav {
+        align-items: center;
+    }
+
+    nav a {
+        justify-content: center;
+        padding: 13px 8px;
+    }
+
+    nav a strong {
+        display: none;
+    }
+
+    .main {
+        margin-left: 68px;
+        width: calc(100% - 68px);
+        padding: 22px;
+    }
+}
+
+/* ———— Smartphones → barra de navegação inferior ———— */
+@media (max-width: 640px) {
+    .sidebar {
+        left: 0;
+        right: 0;
+        top: auto;
+        bottom: 0;
+
+        width: 100%;
+        height: auto;
+        min-height: calc(62px + env(safe-area-inset-bottom, 0px));
+
+        padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        border-right: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+        animation: none;
+
+        z-index: 30;
+    }
+
+    .sidebar::before {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    nav {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
+
+        gap: 4px;
+
+        width: 100%;
+    }
+
+    nav a {
+        flex: 1;
+
+        flex-direction: column;
+        justify-content: center;
+
+        gap: 3px;
+
+        padding: 6px 2px 5px;
+
+        border-radius: 12px;
+
+        font-size: 10px;
+        text-align: center;
+    }
+
+    nav a span {
+        font-size: 19px;
+        line-height: 1;
+    }
+
+    nav a strong {
+        display: block;
+
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: -0.1px;
+    }
+
+    nav a:hover,
+    nav a.active {
+        transform: none;
+
+        color: white;
+        background: linear-gradient(180deg, rgba(124, 92, 255, 0.16), transparent);
+
+        box-shadow: inset 0 3px var(--primary);
+    }
+
+    .theme-light nav a:hover,
+    .theme-light nav a.active {
+        color: #0f172a;
+        background: linear-gradient(180deg, rgba(109, 40, 217, 0.08), transparent);
+
+        box-shadow: inset 0 3px #6d28d9;
+    }
+
+    .theme-light nav a strong {
+        color: #475569;
+    }
+
+    .theme-light nav a.active strong {
+        color: #0f172a;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+
+        padding: 16px 14px calc(78px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .header {
+        align-items: flex-start;
+
+        gap: 10px;
+
+        margin-bottom: 22px;
+    }
+
+    .header p {
+        display: none;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .cards,
+    .cards-duo {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .card {
+        min-height: 150px;
+        padding: 20px;
+    }
+
+    .value {
+        font-size: 26px;
+        margin-top: 12px;
+    }
+
+    .panel {
+        padding: 18px 16px;
+    }
+
+    .panel-header {
+        margin-bottom: 18px;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+
+    .donut-container {
+        height: 220px;
+    }
+
+    /* Formulário de metas empilha no mobile */
+    .goal-inputs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .goal-submit {
+        width: 100%;
+        align-self: stretch;
+    }
+
+    .level-row {
+        gap: 12px;
+    }
+
+    .level-avatar {
+        width: 56px;
+        height: 56px;
+
+        font-size: 26px;
+        border-radius: 16px;
+    }
+
+    /* Lista de movimentações mais compacta */
+    .transaction {
+        padding: 12px 10px;
+
+        gap: 10px;
+    }
+
+    .transaction:hover {
+        transform: none;
+    }
+
+    .transaction-icon {
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+    .transaction-right {
+        gap: 10px;
+    }
+
+    .transaction-value {
+        font-size: 14px;
+    }
+
+    /* Filtros ocupam largura total */
+    .filter-bar input,
+    .filter-bar select {
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Modal vira bottom-sheet */
+    .modal {
+        align-items: flex-end;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 88vh;
+
+        padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+
+        border-radius: 24px 24px 0 0;
+    }
+
+    /* Toasts ocupam o topo da tela */
+    #gamiToasts {
+        left: 12px;
+        right: 12px;
+        top: 12px;
+
+        width: auto;
+        max-width: none;
+    }
+
+    /* Botão de reset ocupa a largura */
+    .btn-reset-data {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Orbs mais leves para o GPU móvel */
+    .orb {
+        filter: blur(80px);
+    }
+
+    .orb.one {
+        width: 320px;
+        height: 320px;
+    }
+
+    .orb.two {
+        width: 260px;
+        height: 260px;
+    }
+
+    .orb.three {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* ———— Smartphones muito pequenos ———— */
+@media (max-width: 380px) {
+    .main {
+        padding: 14px 10px calc(78px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .value {
+        font-size: 24px;
+    }
+
+    .panel-header h2 {
+        font-size: 16px;
+    }
+
+    nav a strong {
+        font-size: 9px;
+    }
 }
