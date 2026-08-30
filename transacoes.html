@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vísuas — Controle Financeiro</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="background-grid"></div>
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<div class="app">
+
+    <!-- ==============================
+         SIDEBAR
+    ============================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                V
+            </div>
+
+            <span>Vísuas</span>
+
+        </div>
+
+        <nav>
+            <a href="index.html"  id="nav-index">
+                <span>⌂</span>
+                <strong>Dashboard</strong>
+            </a>
+            <a href="transacoes.html"  id="nav-transacoes" class="active">
+                <span>↕</span>
+                <strong>Transações</strong>
+            </a>
+            <a href="relatorios.html"  id="nav-relatorios">
+                <span>◉</span>
+                <strong>Relatórios</strong>
+            </a>
+            <a href="configuracoes.html"  id="nav-configuracoes">
+                <span>⚙</span>
+                <strong>Configurações</strong>
+            </a>
+        </nav>
+
+    </aside>
+
+
+    <!-- ==============================
+         MAIN
+    ============================== -->
+
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Todas as Transações</h1>
+                <p>Busque e filtre suas movimentações.</p>
+            </div>
+            <div class="profile"><div class="avatar">H</div></div>
+        </header>
+        
+        <section class="panel" style="margin-bottom: 20px;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <input type="text" id="filterDesc" placeholder="Buscar por descrição..." style="flex: 1; min-width: 200px;">
+                <select id="filterTipo" style="width: 150px;">
+                    <option value="">Todos os Tipos</option>
+                    <option value="entrada">Receitas</option>
+                    <option value="saida">Despesas</option>
+                </select>
+                <select id="filterCat" style="width: 150px;">
+                    <option value="">Todas as Categorias</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Moradia">Moradia</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Equipamentos">Equipamentos</option>
+                    <option value="Serviços">Serviços</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="panel transactions">
+            <div id="transactionListFull"></div>
+        </section>
+
+</main>
+
+</div>
+
+
+<!-- ==============================
+     MODAL
+============================== -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                Nova transação
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="transactionForm">
+
+            <div class="form-group">
+
+                <label>
+                    Descrição
+                </label>
+
+                <input
+                    id="description"
+                    type="text"
+                    placeholder="Ex: Mercado"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Valor
+                </label>
+
+                <input
+                    id="amount"
+                    type="number"
+                    step="0.01"
+                    placeholder="0,00"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Tipo
+                </label>
+
+                <select id="type">
+
+                    <option value="expense">
+                        Despesa
+                    </option>
+
+                    <option value="income">
+                        Receita
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Categoria
+                </label>
+
+                <select id="category">
+
+                    <option>
+                        Alimentação
+                    </option>
+
+                    <option>
+                        Moradia
+                    </option>
+
+                    <option>
+                        Transporte
+                    </option>
+
+                    <option>
+                        Entretenimento
+                    </option>
+
+                    <option>
+                        Saúde
+                    </option>
+
+                    <option>
+                        Outros
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="submit"
+                type="submit">
+
+                Adicionar transação
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/core.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/user.js"></script>
+<script src="js/transacoes.js"></script>
+</body>
+</html>

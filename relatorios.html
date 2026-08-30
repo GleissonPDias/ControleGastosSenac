@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vísuas — Controle Financeiro</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="background-grid"></div>
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<div class="app">
+
+    <!-- ==============================
+         SIDEBAR
+    ============================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                V
+            </div>
+
+            <span>Vísuas</span>
+
+        </div>
+
+        <nav>
+            <a href="index.html"  id="nav-index">
+                <span>⌂</span>
+                <strong>Dashboard</strong>
+            </a>
+            <a href="transacoes.html"  id="nav-transacoes">
+                <span>↕</span>
+                <strong>Transações</strong>
+            </a>
+            <a href="relatorios.html"  id="nav-relatorios" class="active">
+                <span>◉</span>
+                <strong>Relatórios</strong>
+            </a>
+            <a href="configuracoes.html"  id="nav-configuracoes">
+                <span>⚙</span>
+                <strong>Configurações</strong>
+            </a>
+        </nav>
+
+    </aside>
+
+
+    <!-- ==============================
+         MAIN
+    ============================== -->
+
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Relatórios Detalhados</h1>
+                <p>Análise profunda de seus gastos.</p>
+            </div>
+            <div class="profile"><div class="avatar">H</div></div>
+        </header>
+        
+        <section class="cards" style="grid-template-columns: 1fr 1fr; margin-bottom: 30px;">
+            <div class="card large" style="min-height: 120px;">
+                <div class="card-label">Média de Gastos Mensal</div>
+                <div class="value" id="mediaVal">R$ 0,00</div>
+                <small class="muted" style="color:var(--muted); margin-top:5px; display:block">Com base no seu histórico geral</small>
+            </div>
+            <div class="card" style="min-height: 120px; border-color: rgba(255,92,124, 0.4);">
+                <div class="card-label">Maior Gasto Registrado</div>
+                <div class="value negative" id="maiorGastoVal">R$ 0,00</div>
+                <small id="maiorGastoDesc" style="color:var(--muted); margin-top:5px; display:block">-</small>
+            </div>
+        </section>
+        
+        <section class="panel">
+            <div class="panel-header">
+                <h2>Resumo do Ano (Gráfico Completo)</h2>
+            </div>
+            <div class="chart-container">
+                <canvas id="relatorioChart"></canvas>
+            </div>
+        </section>
+
+</main>
+
+</div>
+
+
+<!-- ==============================
+     MODAL
+============================== -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                Nova transação
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="transactionForm">
+
+            <div class="form-group">
+
+                <label>
+                    Descrição
+                </label>
+
+                <input
+                    id="description"
+                    type="text"
+                    placeholder="Ex: Mercado"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Valor
+                </label>
+
+                <input
+                    id="amount"
+                    type="number"
+                    step="0.01"
+                    placeholder="0,00"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Tipo
+                </label>
+
+                <select id="type">
+
+                    <option value="expense">
+                        Despesa
+                    </option>
+
+                    <option value="income">
+                        Receita
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Categoria
+                </label>
+
+                <select id="category">
+
+                    <option>
+                        Alimentação
+                    </option>
+
+                    <option>
+                        Moradia
+                    </option>
+
+                    <option>
+                        Transporte
+                    </option>
+
+                    <option>
+                        Entretenimento
+                    </option>
+
+                    <option>
+                        Saúde
+                    </option>
+
+                    <option>
+                        Outros
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="submit"
+                type="submit">
+
+                Adicionar transação
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/core.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/user.js"></script>
+<script src="js/relatorios.js"></script>
+</body>
+</html>
